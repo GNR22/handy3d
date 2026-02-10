@@ -1,0 +1,24 @@
+IT 198 JK1/thesis/      <-- ROOT FOLDER
+│
+├── backend/            <-- LARAVEL (The Brain)
+│   ├── .env            <-- Database credentials (Neon)
+│   ├── config/
+│   │   └── cors.php    <-- Security rules (Allowed Port 5173)
+│   ├── database/
+│   │   ├── migrations/ <-- Created the "furniture" table
+│   │   └── seeders/    <-- "FurnitureSeeder.php" (Added the data)
+│   ├── public/         <-- PUBLIC WEB FOLDER
+│   │   └── models/     <-- 📂 DROP YOUR GLB FILES HERE!
+│   │       ├── chair.glb
+│   │       ├── sofa.glb
+│   │       └── table.glb
+│   └── routes/
+│       └── api.php     <-- Defined the "/furniture" link
+│
+└── frontend/           <-- REACT (The Face)
+    ├── src/
+    │   ├── api.js      <-- Axios settings (Points to port 8000)
+    │   ├── App.jsx     <-- Main page (List + 3D Canvas)
+    │   ├── Model.jsx   <-- The component that loads the GLB
+    │   └── main.jsx
+    └── package.json    <-- Lists "three", "axios", etc.

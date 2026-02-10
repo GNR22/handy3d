@@ -1,0 +1,10 @@
+1st terminal
+cd backend 
+php artisan serve
+
+2nd terminal
+cd frontend 
+npm run dev
+
+
+Click localhosthost 5173

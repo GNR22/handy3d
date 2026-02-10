@@ -1,0 +1,17 @@
+# Development only
+node_modules
+.env
+.env.*
+
+# Git & editor
+.git
+.gitignore
+.vscode
+.idea
+
+# Docs
+README.md
+
+# Logs
+npm-debug.log*
+yarn-error.log*
