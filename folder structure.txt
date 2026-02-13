@@ -6,19 +6,20 @@ IT 198 JK1/thesis/      <-- ROOT FOLDER
 │   │   └── cors.php    <-- Security rules (Allowed Port 5173)
 │   ├── database/
 │   │   ├── migrations/ <-- Created the "furniture" table
-│   │   └── seeders/    <-- "FurnitureSeeder.php" (Added the data)
-│   ├── public/         <-- PUBLIC WEB FOLDER
-│   │   └── models/     <-- 📂 DROP YOUR GLB FILES HERE!
-│   │       ├── chair.glb
-│   │       ├── sofa.glb
-│   │       └── table.glb
+│   │   └── seeders/    <-- "FurnitureSeeder.php" (Added the data)  
 │   └── routes/
 │       └── api.php     <-- Defined the "/furniture" link
 │
 └── frontend/           <-- REACT (The Face)
     ├── src/
-    │   ├── api.js      <-- Axios settings (Points to port 8000)
-    │   ├── App.jsx     <-- Main page (List + 3D Canvas)
-    │   ├── Model.jsx   <-- The component that loads the GLB
-    │   └── main.jsx
+    |   ├── api.js      <-- Axios settings (Points to port 8000)
+    |   ├── App.jsx     <-- Main page (List + 3D Canvas)
+    |   ├── DraggableItem.jsx <-- Loads a 3D model and allows it to be moved or rotated in edit mode, then updates its position and rotation. 
+    |   ├── Model.jsx   <-- The component that loads the GLB
+    |   └── main.jsx
+    ├── public/         <-- PUBLIC WEB FOLDER
+    │      └── models/     <-- 📂 DROP YOUR GLB FILES HERE!
+    │           ├── chair.glb
+    │           ├── sofa.glb
+    │           └── table.glb
     └── package.json    <-- Lists "three", "axios", etc.

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useGLTF, TransformControls } from '@react-three/drei';
 
 export function DraggableItem({ 
@@ -10,23 +10,27 @@ export function DraggableItem({
   const clonedScene = useMemo(() => scene.clone(), [scene]);
   const [model, setModel] = useState(null);
 
+  // OPTIONAL: If you want to force the Y position to 0 
+  // every time the component mounts or position changes.
+  const fixedY = 0; 
+
   return (
     <>
       {/* 1. THE GIZMO */}
-      {/* Accepts 'mode' to switch between arrows and circles */}
       {isSelected && model && isEditMode && (
         <TransformControls 
           object={model} 
-          mode={transformMode} // 'translate' or 'rotate'
+          mode={transformMode} 
+          /* LOCKING THE Y-AXIS: Hide the vertical arrow during translation */
+          showY={transformMode === 'translate' ? false : true}
           onMouseUp={() => {
             if (model) {
-              // Read BOTH position and rotation from the 3D model
-              const { x, y, z } = model.position;
+              const { x, z } = model.position;
               const { x: rx, y: ry, z: rz } = model.rotation;
               
-              // Send both back to App.jsx
+              // We send back the current X and Z, but keep Y at our fixed floor level
               onUpdate({ 
-                  position: [x, y, z], 
+                  position: [x, fixedY, z], 
                   rotation: [rx, ry, rz] 
               });
             }
@@ -37,8 +41,9 @@ export function DraggableItem({
       {/* 2. THE OBJECT */}
       <primitive 
         object={clonedScene} 
-        position={position} 
-        rotation={rotation} // Apply the saved rotation
+        /* Ensure the initial render also respects the fixed floor height */
+        position={[position[0], fixedY, position[2]]} 
+        rotation={rotation} 
         onClick={onClick} 
         ref={setModel} 
       />
